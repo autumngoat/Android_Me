@@ -27,14 +27,15 @@ import android.widget.ImageView;
 
 import com.example.android.android_me.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BodyPartFragment extends Fragment {
 
     // Completed (3) Create final Strings to store state information about the list of images and list index
-    private final String KEY_LIST_IMAGES_IDS = "LIST_IMAGE_IDS";
-    private final String KEY_LIST_INDEX = "LIST_INDEX";
+    private static final String KEY_LIST_IMAGES_IDS = "image_ids";
+    private static final String KEY_LIST_INDEX = "list_index";
 
     // Tag for logging
     private static final String TAG = "BodyPartFragment";
@@ -103,7 +104,7 @@ public class BodyPartFragment extends Fragment {
     // Completed (4) Override onSaveInstanceState and save the current state of this fragment
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putStringArrayList(KEY_LIST_IMAGES_IDS, new ArrayList(mImageIds));
+        outState.putIntegerArrayList(KEY_LIST_IMAGES_IDS, (ArrayList<Integer>) mImageIds);
         outState.putInt(KEY_LIST_INDEX, mListIndex);
         super.onSaveInstanceState(outState);
     }
