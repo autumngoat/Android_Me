@@ -56,6 +56,12 @@ public class BodyPartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        // Load saved state, if there is one
+        if (savedInstanceState != null){
+            mImageIds = savedInstanceState.getIntegerArrayList(KEY_LIST_IMAGES_IDS);
+            mListIndex = savedInstanceState.getInt(KEY_LIST_INDEX);
+        }
+
         // Inflate the Android-Me fragment layout
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
 
