@@ -17,6 +17,7 @@
 package com.example.android.android_me.ui;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,11 +27,14 @@ import android.widget.ImageView;
 
 import com.example.android.android_me.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BodyPartFragment extends Fragment {
 
-    // TODO (3) Create final Strings to store state information about the list of images and list index
+    // Completed (3) Create final Strings to store state information about the list of images and list index
+    private final String KEY_LIST_IMAGES_IDS = "LIST_IMAGE_IDS";
+    private final String KEY_LIST_INDEX = "LIST_INDEX";
 
     // Tag for logging
     private static final String TAG = "BodyPartFragment";
@@ -96,5 +100,11 @@ public class BodyPartFragment extends Fragment {
         mListIndex = index;
     }
 
-    // TODO (4) Override onSaveInstanceState and save the current state of this fragment
+    // Completed (4) Override onSaveInstanceState and save the current state of this fragment
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putStringArrayList(KEY_LIST_IMAGES_IDS, new ArrayList(mImageIds));
+        outState.putInt(KEY_LIST_INDEX, mListIndex);
+        super.onSaveInstanceState(outState);
+    }
 }
