@@ -16,6 +16,8 @@
 
 package com.example.android.android_me.ui;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -37,6 +39,17 @@ public class AndroidMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
-        // TODO (5) Create a new BodyPartFragment instance and display it using the FragmentManager
+        // Completed (5) Create a new BodyPartFragment instance and display it using the FragmentManager
+        BodyPartFragment bodyPartFragment = new BodyPartFragment();
+        // Return the FragmentManager for interacting with Fragments associated with this Activity,
+        // used to create transactions for adding, removing, and replacing fragments
+        FragmentManager fm = getSupportFragmentManager();
+        // Start a series of edit operations Fragments associated with this FragmentManager
+        FragmentTransaction ft = fm.beginTransaction();
+        // Add Fragment to the container
+        ft.add(R.id.fragment_container, bodyPartFragment);
+        // Schedules a commit of this transaction (does not happen immediately) to be done on the
+        // main/UI thread when thread next becomes available
+        ft.commit();
     }
 }
