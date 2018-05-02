@@ -34,19 +34,19 @@ public class BodyPartFragment extends Fragment {
 
     private static final String TAG = BodyPartFragment.class.getSimpleName();
 
-    private List<Integer> mImages;
+    private List<Integer> mImageIds;
     private int mImageIndex;
 
     // Completed (1) Create a setter method and class variable to set and store of a list of image resources
 
-    public void setmImages(List<Integer> mImages) {
-        this.mImages = mImages;
+    public void setImagesIds(List<Integer> mImageIds) {
+        this.mImageIds = mImageIds;
     }
 
     // Completed (2) Create another setter method and variable to track and set the index of the list item to display
         // ex. index = 0 is the first image id in the given list , index 1 is the second, and so on
 
-    public void setmImageIndex(int mImageIndex) {
+    public void setImageIndex(int mImageIndex) {
         this.mImageIndex = mImageIndex;
     }
 
@@ -71,11 +71,14 @@ public class BodyPartFragment extends Fragment {
         // Set the image to the first in our list of head images
 //        imageView.setImageResource(AndroidImageAssets.getHeads().get(0));
 
-        mImages = AndroidImageAssets.getHeads();
+        // Set class variable to hold list of head image resource IDs
+        //  Note: Not the place to do this ( check (4) )
+//        mImageIds = AndroidImageAssets.getHeads();
+
         // Completed (3) If a list of image ids exists, set the image resource to the correct item in that list
         // Otherwise, create a Log statement that indicates that the list was not found
-        if(mImages != null){
-            imageView.setImageResource(mImages.get(mImageIndex));
+        if(mImageIds != null){
+            imageView.setImageResource(mImageIds.get(mImageIndex));
         } else {
             Log.i(TAG, "List was not found");
         }
