@@ -39,7 +39,7 @@ public class BodyPartFragment extends Fragment {
 
     // Completed (1) Create a setter method and class variable to set and store of a list of image resources
 
-    public void setImagesIds(List<Integer> mImageIds) {
+    public void setImageIds(List<Integer> mImageIds) {
         this.mImageIds = mImageIds;
     }
 
