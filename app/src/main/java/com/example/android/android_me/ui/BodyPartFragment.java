@@ -27,7 +27,7 @@ public class BodyPartFragment extends Fragment {
         ImageView imageView = (ImageView)rootView.findViewById(R.id.fragment_body_part);
         // (3) Show the first image in the list of head images (3)
         // Set view
-        imageView.setImageResource(AndroidImageAssets.getBodies().get(0));
+        imageView.setImageResource(AndroidImageAssets.getHeads().get(0));
         // Return the fragment View
         return rootView;
     }
