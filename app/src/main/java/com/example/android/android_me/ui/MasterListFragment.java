@@ -31,9 +31,13 @@ import com.example.android.android_me.data.AndroidImageAssets;
 // The list appears as a grid of images
 public class MasterListFragment extends Fragment {
 
-    // TODO (1) Define a new interface OnImageClickListener that triggers a callback in the host activity
+    // Completed (1) Define a new interface OnImageClickListener that triggers a callback in the host activity
         // The callback is a method named onImageSelected(int position) that contains information about
         // which position on the grid of images a user has clicked
+    public interface OnImageClickListener(){
+        // The callback
+        void onImageSelected(int position);
+    }
 
     // TODO (2) Override onAttach to make sure that the container activity has implemented the callback
 
