@@ -28,7 +28,7 @@ public class AndroidMeActivity extends AppCompatActivity {
 
     // Completed (1) Create a fragment_master_list.xml layout file to display all our images; this should be a GridView
 
-    // TODO (2) Create a new class called MasterListFragment which will display the GridView list of ALL AndroidMe images
+    // Completed (2) Create a new class called MasterListFragment which will display the GridView list of ALL AndroidMe images
         // In the fragment class, you'll need to implement an empty constructor, and onCreateView
 
     // TODO (3) In the MasterListFragment class, create a new MasterListAdapter and set it on the GridView
