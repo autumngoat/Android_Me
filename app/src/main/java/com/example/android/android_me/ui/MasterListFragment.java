@@ -25,6 +25,11 @@ public class MasterListFragment extends Fragment {
         // Get a reference to the GridView in the fragment_master_list xml layout file
         GridView gridView = (GridView) rootView.findViewById(R.id.master_list_grid_view);
 
+        // Create a new MasterListAdapter(context, List<Integer> imageIds)
+        MasterListAdapter masterListAdapter = new MasterListAdapter(getContext(), AndroidImageAssets.getAll());
+        // Set Adapter on Gridview
+        gridView.setAdapter(masterListAdapter);
+
         return rootView;
     }
 }
