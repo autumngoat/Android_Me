@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent));
+                startActivity(intent);
             }
         });
     }
