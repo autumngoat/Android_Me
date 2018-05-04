@@ -107,36 +107,75 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
         // This ensures that the index will always be a value between 0-11
         int listIndex = position - 12*bodyPartNumber;
 
-        // Set the currently displayed item for the correct body part fragment
-        switch(bodyPartNumber) {
-            case 0: headIndex = listIndex;
-                break;
-            case 1: bodyIndex = listIndex;
-                break;
-            case 2: legIndex = listIndex;
-                break;
-            default: break;
-        }
+        if(isTwoPane){
+            // Handle the 2-pane case
+            BodyPartFragment newFragment = new BodyPartFragment();
 
-        // Put this information in a Bundle and attach it to an Intent that will launch an AndroidMeActivity
-        Bundle b = new Bundle();
-        b.putInt("headIndex", headIndex);
-        b.putInt("bodyIndex", bodyIndex);
-        b.putInt("legIndex", legIndex);
-
-        // Attach the Bundle to an intent
-        final Intent intent = new Intent(this, AndroidMeActivity.class);
-        intent.putExtras(b);
-
-        // The "Next" button launches a new AndroidMeActivity
-        Button nextButton = (Button) findViewById(R.id.next_button);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent);
+            // Replace EXISTING fragments when a new image is selected from the master list
+            //  This is all happening in this MainActivity class and 1 fragment will be replace at
+            //  a time
+            switch (bodyPartNumber){
+                case 0:
+                    // Set to a list of heads
+                    newFragment.setImageIds(AndroidImageAssets.getHeads());
+                    // Set to a particular head
+                    newFragment.setListIndex(listIndex);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.head_container, newFragment)
+                            .commit();
+                    break;
+                case 1:
+                    // Set to a list of bodies
+                    newFragment.setImageIds(AndroidImageAssets.getBodies());
+                    // Set to a particular body
+                    newFragment.setListIndex(listIndex);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.body_container, newFragment)
+                            .commit();
+                case 2:
+                    // Set to a list of legs
+                    newFragment.setImageIds(AndroidImageAssets.getLegs());
+                    // Set to a particular leg
+                    newFragment.setListIndex(listIndex);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.leg_container, newFragment)
+                            .commit();
+                default: break;
             }
-        });
+        } else {
+            // Set the currently displayed item for the correct body part fragment
+            switch(bodyPartNumber) {
+                case 0: headIndex = listIndex;
+                    break;
+                case 1: bodyIndex = listIndex;
+                    break;
+                case 2: legIndex = listIndex;
+                    break;
+                default: break;
+            }
 
+            // Put this information in a Bundle and attach it to an Intent that will launch an AndroidMeActivity
+            Bundle b = new Bundle();
+            b.putInt("headIndex", headIndex);
+            b.putInt("bodyIndex", bodyIndex);
+            b.putInt("legIndex", legIndex);
+
+            // Attach the Bundle to an intent
+            final Intent intent = new Intent(this, AndroidMeActivity.class);
+            intent.putExtras(b);
+
+            // The "Next" button launches a new AndroidMeActivity
+            Button nextButton = (Button) findViewById(R.id.next_button);
+            nextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
 }
