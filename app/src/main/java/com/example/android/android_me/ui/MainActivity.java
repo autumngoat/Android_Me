@@ -18,12 +18,14 @@ package com.example.android.android_me.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.android.android_me.R;
+import com.example.android.android_me.data.AndroidImageAssets;
 
 // This activity is responsible for displaying the master list of all images
 // Implement the MasterListFragment callback, OnImageClickListener
@@ -45,9 +47,44 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO (4) If you are making a two-pane display, add new BodyPartFragments to create an initial Android-Me image
+        // Completed (4) If you are making a two-pane display, add new BodyPartFragments to create an initial Android-Me image
         // Also, for the two-pane display, get rid of the "Next" button in the master list fragment
 
+        // This layout does not exist on a 1-pane phone b/c R.id.android_me_linear_layout is the
+        // LinearLayout with the 3 fragment containers that would be the right-side of a tablet
+        if(findViewById(R.id.android_me_linear_layout) != null){
+            // Use sw600dp (tablet version) of activity_main
+            isTwoPane = true;
+
+            // Get rid of the "Next" button in the master list fragment
+            Button nextButton = (Button)findViewById(R.id.next_button);
+            nextButton.setVisibility(View.GONE);
+
+            // Create new body part fragments (similar code to AndroidMeActivity)
+            if(savedInstanceState == null){
+                // Create and set a new head fragment
+                BodyPartFragment headFragment = new BodyPartFragment();
+                headFragment.setImageIds(AndroidImageAssets.getHeads());
+
+                // Create and set a new body fragment
+                BodyPartFragment bodyFragment = new BodyPartFragment();
+                bodyFragment.setImageIds(AndroidImageAssets.getBodies());
+
+                // Create and set a new legs fragment
+                BodyPartFragment legsFragment = new BodyPartFragment();
+                legsFragment.setImageIds(AndroidImageAssets.getLegs());
+
+                // Add the fragments to their respective containers
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction()
+                        .add(R.id.head_container, headFragment)
+                        .add(R.id.body_container, bodyFragment)
+                        .add(R.id.leg_container, legsFragment)
+                        .commit();
+            }
+        } else {
+            isTwoPane = false;
+        }
     }
 
     // Define the behavior for onImageSelected
