@@ -26,6 +26,9 @@ import com.example.android.android_me.R;
 // Implement the MasterListFragment callback, OnImageClickListener
 public class MainActivity extends AppCompatActivity implements MasterListFragment.OnImageClickListener{
 
+    private int mHeadIndex;
+    private int mBodyIndex;
+    private int mLegsIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,27 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
         // Create a Toast that displays the position that was clicked
         Toast.makeText(this, "Position clicked = " + position, Toast.LENGTH_SHORT).show();
 
-        // TODO (2) Based on where a user has clicked, store the selected list index for the head, body, and leg BodyPartFragments
+        // Completed (2) Based on where a user has clicked, store the selected list index for the head, body, and leg BodyPartFragments
+        // List range is 0 to 35 or max size 36, divide by 12 will result in a range of 0 to 2 or a
+        // max size of 3 to help ID whether the position is a head/body/leg
+        int bodyPartNumber = position / 12;
+        // However, each individual list of heads/bodies/legs is 0 to 11 or 12 items so we must get
+        // number between 0 and 11 to get the proper head/body/leg
+        //   EX: position == 35, bodyPartNumber == 2, listIndex == 35 - 2 * 12 == 11 DING DING DING!
+        int listIndex = position - bodyPartNumber * 12;
+        switch(bodyPartNumber){
+            case 0: // Head 0 - 11
+                mHeadIndex = listIndex;
+                break;
+            case 1: // Body 12 - 23
+                mBodyIndex = listIndex;
+                break;
+            case 2: // Legs 24 - 35
+                mLegsIndex = listIndex;
+                break;
+            default:
+                break;
+        }
 
         // TODO (3) Put this information in a Bundle and attach it to an Intent that will launch an AndroidMeActivity
 
