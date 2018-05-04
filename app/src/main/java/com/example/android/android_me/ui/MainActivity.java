@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
     private int bodyIndex;
     private int legIndex;
 
-    // TODO (3) Create a variable to track whether to display a two-pane or single-pane UI
+    // Completed (3) Create a variable to track whether to display a two-pane or single-pane UI
         // A single-pane display refers to phone screens, and two-pane to larger tablet screens
+    private boolean isTwoPane;
 
 
     @Override
