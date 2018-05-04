@@ -35,8 +35,8 @@ public class AndroidMeActivity extends AppCompatActivity {
         // The MasterListAdapter code is provided; it creates the ImageViews that are contained in the GridView
         // The adapter takes as parameters (Context context, List<Integer> imageIds)
 
-    // After creating the fragment..
-    // TODO (4) Create a new Activity named MainActivity and a corresponding layout file that displays a MasterListFragment
+    // After creating the fragment.. (I guess they mean after creating the MasterListFragment)
+    // Completed (4) Create a new Activity named MainActivity and a corresponding layout file that displays a MasterListFragment
         // Remember, to display a static fragment in a layout file, use the <fragment> tag
 
 
